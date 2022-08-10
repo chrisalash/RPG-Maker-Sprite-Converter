@@ -1,6 +1,5 @@
 import os
 from os.path import isfile, join
-from tkinter.tix import INTEGER
 from PIL import Image
 
 class Automation:
@@ -22,13 +21,13 @@ class Automation:
     def run (self):
         pictures = self.get_files_from_in_directory()
         self.put_each_file_on_tilesheet(pictures)
-        name = input("What would you like to name your file?")
-        self.sprite.save(name + ".png")
+        name = input("What would you like to name your file? ")
+        self.sprite.save(self.out_directory + "\\" + name + ".png")
         os.remove(self.out_directory + "/autosave.png")
-        keep_going = input("Would you like to continue y/yes n/no")
+        keep_going = input("Would you like to continue y/yes n/no ")
         while(keep_going.__contains__('y')):
             self.put_each_file_on_tilesheet(pictures)
-            keep_going = input("Would you like to continue y/yes n/no")
+            keep_going = input("Would you like to continue y/yes n/no ")
 
 
     def get_files_from_in_directory(self):
