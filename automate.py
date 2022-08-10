@@ -22,6 +22,9 @@ class Automation:
     def run (self):
         pictures = self.get_files_from_in_directory()
         self.put_each_file_on_tilesheet(pictures)
+        name = input("What would you like to name your file?")
+        self.sprite.save(name + ".png")
+        os.remove(self.out_directory + "/autosave.png")
         keep_going = input("Would you like to continue y/yes n/no")
         while(keep_going.__contains__('y')):
             self.put_each_file_on_tilesheet(pictures)
@@ -92,7 +95,7 @@ class Automation:
             sprite_location_height = (picture_height / rows) * selected_row
             if(selected_row !=0):
                 for column in self.sprite_column_names:
-                    sprite_number = int(input("What sprite do you want in the " + column + " Column: "))
+                    sprite_number = int(input("What sprite do you want in the " + column + " Box: "))
                     while(sprite_number < 0 or sprite_number > columns):
                         sprite_number = int(input("Please enter a valid number: "))
                     if (sprite_number != 0):
@@ -107,7 +110,7 @@ class Automation:
                     current_paste_width = current_paste_width + self.rpg_width
             current_paste_width = (max_paste_width - 2 * self.rpg_width) - self.rpg_width / 2
             current_paste_height = current_paste_height + self.rpg_height
-        self.sprite.save(self.out_directory + "\\" + "Test.png")    
+        self.sprite.save(self.out_directory + "\\" + "autosave.png")    
 
 
 
