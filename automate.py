@@ -9,6 +9,7 @@ class Automation:
         self.in_directory = f"{os.path.dirname(os.path.abspath(__file__))}\\{'pre_photos'}"
         self.out_directory = f"{os.path.dirname(os.path.abspath(__file__))}\\{'post_photos'}"
         self.sprite = Image.open('Template.png') #Name of file you want to add sprites too
+        self.save_name = "autosave"
         self.sprite_width = self.sprite.width
         self.sprite_height = self.sprite.height
         self.sprite_columns = 3
@@ -20,10 +21,9 @@ class Automation:
 
     def run (self):
         pictures = self.get_files_from_in_directory()
+        self.save_name = input("What would you like to name your file? ")
         self.put_each_file_on_tilesheet(pictures)
-        name = input("What would you like to name your file? ")
-        self.sprite.save(self.out_directory + "\\" + name + ".png")
-        os.remove(self.out_directory + "/autosave.png")
+        self.sprite.save(self.out_directory + "\\" + self.save_name + ".png")
         keep_going = input("Would you like to continue y/yes n/no ")
         while(keep_going.__contains__('y')):
             self.put_each_file_on_tilesheet(pictures)
@@ -109,7 +109,7 @@ class Automation:
                     current_paste_width = current_paste_width + self.rpg_width
             current_paste_width = (max_paste_width - 2 * self.rpg_width) - self.rpg_width / 2
             current_paste_height = current_paste_height + self.rpg_height
-        self.sprite.save(self.out_directory + "\\" + "autosave.png")    
+        self.sprite.save(self.out_directory + "\\" + self.save_name + ".png")   
 
 
 
